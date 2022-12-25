@@ -34,7 +34,7 @@ COUNT ( ProductID )
 AS
     "CONTAGEM"
 FROM
-    Sales.SalesOrderDetail <br>
+    Sales.SalesOrderDetail
 GROUP BY
     ProductID
 
