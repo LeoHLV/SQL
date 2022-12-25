@@ -1,0 +1,125 @@
+SQL SERVER
+** cada procedure deve ser axecutado para teste
+    > TESTAR -> sublinhar apenas o SELECT sem a parte CREATE PROCEDURE
+    > CRIAR -> sublinhar tudo e pressioando (F5) para criar a procedure **						
+
+** Procedures ficam armazenadas dentro da DataBase em :
+    PT : Programação > Procedimentos Armazenados
+    EN : Programability > Stored Procedures
+
+coluna_id -> representa a primary key (deve ser auto incrementável)
+
+________________________________________________________________________________________________
+Get_ALL
+
+CREATE PROCEDURE Get_All
+AS
+SELECT 
+    coluna_id,
+    coluna_1,
+    coluna_2,
+    coluna_3 
+FROM 
+    dbo.Table
+ORDER BY 
+    coluna_id ASC
+
+________________________________________
+POST
+
+CREATE PROCEDURE Item_Add
+    @coluna_1 varchar(50),
+    @coluna_2 int,
+    @coluna_3 varchar(MAX)
+AS
+INSERT INTO dbo.Tabela (
+    coluna_1,
+    coluna_2,
+    coluna_3
+)
+VALUES( 
+    @coluna_1,
+    @coluna_2,
+    @coluna_3
+)
+
+________________________________________
+PUT
+
+CREATE PROCEDURE Item_Update
+    @coluna_id int,
+    @coluna_1 varchar(50),
+    @coluna_2 int,
+    @coluna_3 varchar(MAX)
+AS 
+UPDATE 
+    dbo.Tabela 
+SET 
+    coluna_1 = @coluna_1,
+    coluna_2 = @coluna_2,
+    coluna_3 = @coluna_3
+WHERE 
+    coluna_id = @coluna_id
+
+________________________________________
+DELETE
+
+CREATE PROCEDURE Item_Delete
+    @coluna_id int
+AS
+DELETE 
+FROM 
+    dbo.Table 
+WHERE 
+    coluna_id = @coluna_id
+
+________________________________________________________________________________________________
+EXEMPLO - PROCEDURES COMPLEXO
+
+// definir identificador para procedure e buscar variavel de entrada na coluna - NomeCurso
+
+CREATE PROCEDURE Buscar_Curso  
+    @NomeCurso VARCHAR(20)     
+AS
+SET 
+    @NOMECURSO = '%' + @NomeCurso + '%';   //variavel @NOMECURSO recebe incremento a junção 
+SELECT
+    c.id_curso,
+    c.nome_cursos,
+    a.nome,
+    ISNULL(a.sexo, 'NI') sexo   //'NI' -> campo nulo retorna 'Não Informado'
+FROM Cursos C 
+    INNER JOIN Turmas t ON (t.id_turma = c.id_curso)
+    INNER JOIN AlunosXTurmas alt ON (alt.id_turma = t.id_turma)
+    INNER JOIN Alunos a ON (a.id_aluno – alt.id_aluno)
+WHERE nome_curso 
+LIKE @NomeCurso
+
+// -------------------- Como utilizar a procedure --------------------
+EXEC Buscar_Curso 'PowerPoint'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
