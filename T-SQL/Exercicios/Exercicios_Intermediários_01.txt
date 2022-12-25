@@ -6,7 +6,7 @@ I_0 – Retornar email de usuário chamado Peter Krebs.
 // acessar nome para descobrir ID
 SELECT *
 FROM
-    Person.Person <br>
+    Person.Person
 WHERE
     FirstName = 'Peter' 
 AND
