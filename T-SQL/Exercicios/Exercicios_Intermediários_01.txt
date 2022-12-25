@@ -1,0 +1,97 @@
+___________________________________________________________________________________________________
+I_0 – Retornar email de usuário chamado Peter Krebs.
+( tabela: Person.Person, Person.EmailAdress - colunas: FirstName, LastName )
+( tabela: Person.EmailAddress, Person.EmailAdress - colunas: EmailAddress, BusinessEntityID )
+
+// acessar nome para descobrir ID
+SELECT *
+FROM
+    Person.Person <br>
+WHERE
+    FirstName = 'Peter' 
+AND
+    LastName = 'Krebs';	
+
+// acessar o email utilizando o ID= 26, para descobrir email 
+SELECT 
+    EmailAddress
+FROM
+    Person.EmailAddress
+WHERE
+    BusinessEntityID = 26;
+
+___________________________________________________________________________________________________
+I_1 - Quanto cada produto vendeu ao todo até hoje
+( tabela: Sales.SalesOrderDetail - coluna: ProductID )
+
+SELECT *
+FROM
+    Sales.SalesOrderDetail
+
+SELECT
+    ProductID, 
+COUNT ( ProductID ) 
+AS
+    "CONTAGEM"
+FROM
+    Sales.SalesOrderDetail <br>
+GROUP BY
+    ProductID
+
+___________________________________________________________________________________________________
+I_2- Retornar a média de preços para produtos que são prateados ( silver )
+( tabela: Production.Product )
+
+SELECT 
+    Color, 
+    AVG ( ListPrice ) "PRECO" 
+FROM
+    Production.Product
+WHERE 
+    Color = 'silver' 
+GROUP BY
+    Color
+
+___________________________________________________________________________________________________
+I_3- Retorne um lista de quantas pessoas tem o mesmo MiddleName.
+( tabela: Person.Person	- coluna: FirstName, MiddleName )
+
+SELECT
+    MiddleName, 
+    COUNT ( FirstName ) 
+AS 
+    "Quantidade" 
+FROM
+    Person.Person
+GROUP BY
+    MiddleName
+
+___________________________________________________________________________________________________
+I_4- Retorne a quantidade (quantity) que cada produto é vendido na loja
+( tabela: Sales.SalesOrderDetail - coluna: ProductID, OrderQty )
+
+SELECT
+    ProductID,
+    AVG ( OrderQty ) "Media"
+FROM
+    Sales.SalesOrderDetail
+GROUP BY
+    ProductID
+
+___________________________________________________________________________________________________
+I_5- Quais os nomes no sistema tem uma ocorrencia mais que 10 vezes 
+( tabela (Person.Person) utilizando (GROUP BY, HAVING ) )
+
+SELECT
+    FirstName, 
+    COUNT ( FirstName ) 
+AS
+    ‘QUANTIDADE’
+FROM
+    Person.Person
+GROUP BY
+    FirstName
+HAVING 
+    COUNT ( FirstName ) > 10
+
+___________________________________________________________________________________________________
