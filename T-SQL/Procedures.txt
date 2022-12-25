@@ -1,7 +1,7 @@
 SQL SERVER
-** cada procedure deve ser axecutado para teste
+** cada procedure deve ser executado individualmente para testar.
     > TESTAR -> sublinhar apenas o SELECT sem a parte CREATE PROCEDURE
-    > CRIAR -> sublinhar tudo e pressioando (F5) para criar a procedure **						
+    > CRIAR -> sublinhar todo o script e pressioando (F5) para criar a procedure
 
 ** Procedures ficam armazenadas dentro da DataBase em :
     PT : Programação > Procedimentos Armazenados
@@ -10,7 +10,7 @@ SQL SERVER
 coluna_id -> representa a primary key (deve ser auto incrementável)
 
 ________________________________________________________________________________________________
-Get_ALL
+GET
 
 CREATE PROCEDURE Get_All
 AS
@@ -95,31 +95,6 @@ FROM Cursos C
 WHERE nome_curso 
 LIKE @NomeCurso
 
-// -------------------- Como utilizar a procedure --------------------
+// ---- Como utilizar ----
 EXEC Buscar_Curso 'PowerPoint'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
